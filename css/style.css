@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/*  ----------------------------------------------------------------------- */
+/*     FORMATTAZIONE GENERALE */
+.container-fullwidth {
+    background-color: #dfe0d8;
+    position:relative;
+    height: 100vh;
+}
+
+.nav-fullwidth {
+    height: 100px;
+    background-color: #00a093;
+}
+
+.container {
+    /* da cancellare */
+    width: 1200px;
+    /* max-width: 1200px; */
+    height: 95vh;
+    display:flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+}
+/* ------------------------------------------------------------------------- */
+/* FINE FORMATTAZIONE GENERALE  */
+/* ------------------------------------------------------------------------- */
+/* FORMATTAZIONE BLOCCO LISTA UTENTI */
+.blocco-lista-utenti {
+    width: 40%;
+    height: 100%;
+}
+
+.mio-profilo {
+    height: 70px;
+    width: 100%;
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 1px solid #dbdbdb;
+}
+
+.notifica {
+    height: 70px;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #99dffc;
+}
+
+.lista-utenti {
+    position:relative;
+    overflow-y: scroll;
+    height: calc(100% - 140px);
+    width: 100%;
+}
+
+.cerca-utenti {
+    background-color: #fbfbfb;
+    width: 100%;
+    height: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.utente {
+    width: 100%;
+    height: 70px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #dbdbdb;
+}
+/* ------------------------------------------------------------------------- */
+/* FINE FORMATTAZIONE BLOCCO LISTA UTENTI */
+
+/* ------------------------------------------------------------------------- */
+/* FORMATTAZIONE BLOCCO CHAT*/
+.blocco-chat {
+    width: 60%;
+    height: 100%;
+    border-left: 1px solid #dbdbdb;
+}
+
+.destinatario-chat {
+    height: 70px;
+    width: 100%;
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-left: none;
+}
+
+.chat {
+    width: 100%;
+    height: calc(100% - 140px);
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+}
+
+.testo {
+    width: 100%;
+    height: 70px;
+    background-color: #f5f0ed;
+}
+/* ------------------------------------------------------------------------- */
+/* FINE FORMATTAZIONE BLOCCO CHAT */
