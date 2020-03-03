@@ -2,12 +2,37 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
 }
 
 .clearfix:after {
     content: "";
     display: table;
     clear: both;
+}
+
+i {
+    font-size: 25px;
+    margin: 0 10px;
+    color: #bababa;
+    cursor: pointer;
+}
+
+.img-profilo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    margin: 0 10px;
+}
+
+h4 {
+    font-size: 15px;
+}
+
+p {
+    font-size: 13px;
 }
 /*  ----------------------------------------------------------------------- */
 /*     FORMATTAZIONE GENERALE */
@@ -56,14 +81,40 @@
     height: 70px;
     width: 100%;
     display:flex;
-    justify-content: center;
     align-items: center;
     background-color: #99dffc;
 }
 
+.notifica-testo {
+    line-height: 23px;
+}
+
+.notifica-icona {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 10px;
+    background-color: white;
+    color: #99dffc;
+}
+
+.notifica-icona i {
+    color: #99dffc;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-80%, -50%);
+}
+
+.notifica-testo a {
+    color: #5a8193;
+}
+
 .lista-utenti {
     position:relative;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(100% - 140px);
     width: 100%;
 }
@@ -75,6 +126,30 @@
     position: sticky;
     top: 0;
     z-index: 2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cerca-box {
+    width: 90%;
+    height: 80%;
+    background-color: white;
+    color: #c4c7c8;
+    border-radius: 5px;
+    display:flex;
+    align-items: center;
+}
+
+.cerca-box i {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.cerca-box input {
+    border: none;
+    width: 90%;
+    color: #c4c7c8;
 }
 
 .utente {
@@ -86,6 +161,32 @@
     justify-content: space-between;
     border-top: 1px solid #dbdbdb;
 }
+
+.mio-profilo-dx {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.utente-img-testo {
+    display: flex;
+    justify-content: space-around;
+    line-height: 23px;
+}
+
+.utente-img-testo p {
+    color: #767e81;
+    font-weight: bold;
+}
+
+.utente-orario {
+    padding-bottom: 33px;
+    padding-right: 10px;
+    color: #c5c7c8;
+}
+
+
 /* ------------------------------------------------------------------------- */
 /* FINE FORMATTAZIONE BLOCCO LISTA UTENTI */
 
@@ -107,6 +208,26 @@
     border-left: none;
 }
 
+.destinatario-chat-nome {
+    line-height: 18px;
+}
+
+.destinatario-chat-nome p {
+    color: #767e81;
+}
+
+.destinatario-chat-sx {
+    display:flex;
+    align-items: center;
+}
+
+.destinatario-chat-dx {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 15px;
+}
+
 .chat {
     width: 100%;
     height: calc(100% - 140px);
@@ -117,6 +238,32 @@
     width: 100%;
     height: 70px;
     background-color: #f5f0ed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.testo-icone , .testo-audio {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.testo-form {
+    border-radius: 5px;
+    background-color: white;
+    width: 70%;
+    line-height: 80%;
+}
+
+.chat-form input {
+    width: 100%;
+    color: #bec1c3;
+    padding: 18px 20px;
+    border: none;
+    border-radius: 5px;
 }
 /* ------------------------------------------------------------------------- */
 /* FINE FORMATTAZIONE BLOCCO CHAT */
