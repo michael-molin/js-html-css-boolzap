@@ -24,8 +24,8 @@ $(document).ready(function(){
 
         $('#input-utenti').keyup(function(event){
             var carattereFiltro = $(this).val().toLowerCase();
-            $('.utente').find('h4').each(function() {
-                if ($(this).text().toLowerCase().includes(carattereFiltro)) {
+            $('.utente').each(function() {
+                if ($(this).find('h4').text().toLowerCase().includes(carattereFiltro)) {
                     $(this).show();
                 } else {
                     $(this).hide();

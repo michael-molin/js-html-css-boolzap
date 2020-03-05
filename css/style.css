@@ -157,6 +157,7 @@ p {
     overflow-y: auto;
     height: calc(100% - 140px);
     width: 100%;
+    background-color: #f4f4f4;
 }
 
 .cerca-utenti {
