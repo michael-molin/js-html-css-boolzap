@@ -19,14 +19,6 @@ i {
     cursor: pointer;
 }
 
-.img-profilo {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    object-fit: contain;
-    margin: 0 10px;
-}
-
 h4 {
     font-size: 15px;
 }
@@ -34,6 +26,11 @@ h4 {
 p {
     font-size: 13px;
 }
+
+.active {
+    display:block;
+}
+
 /*  ----------------------------------------------------------------------- */
 /*     FORMATTAZIONE GENERALE */
 .container-fullwidth {
@@ -57,6 +54,49 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50% , -50%);
+}
+
+.img-profilo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    margin: 0 10px;
+}
+
+.template {
+    display: none;
+}
+
+.msg-sent {
+    padding: 5px;
+    min-width: 5%;
+    max-width: 40%;
+    background-color: #dafac2;
+    margin: 15px 30px 15px 0;
+    align-self: flex-end;
+    border-radius: 5px;
+}
+
+.msg-receive {
+    padding: 5px;
+    min-width: 5%;
+    max-width: 40%;
+    background-color: white;
+    margin: 15px 0px 15px 30px;
+    align-self: flex-start;
+    border-radius: 5px;
+}
+
+.msg-testo {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.msg-orario {
+    text-align: right;
+    font-size: 12px;
 }
 /* ------------------------------------------------------------------------- */
 /* FINE FORMATTAZIONE GENERALE  */
@@ -229,6 +269,9 @@ p {
 }
 
 .chat {
+    overflow: auto;
+    display:flex;
+    flex-direction: column;
     width: 100%;
     height: calc(100% - 140px);
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
@@ -243,7 +286,7 @@ p {
     align-items: center;
 }
 
-.testo-icone , .testo-audio {
+.testo-icone , .testo-audio-invia {
     width: 15%;
     height: 100%;
     display: flex;
@@ -260,10 +303,13 @@ p {
 
 .chat-form input {
     width: 100%;
-    color: #bec1c3;
     padding: 18px 20px;
     border: none;
     border-radius: 5px;
+}
+
+#invia {
+    display:none;
 }
 /* ------------------------------------------------------------------------- */
 /* FINE FORMATTAZIONE BLOCCO CHAT */

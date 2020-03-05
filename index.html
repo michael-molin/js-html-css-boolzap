@@ -9,7 +9,7 @@
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
     <script src="https://kit.fontawesome.com/a51364b666.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/script.js"></script>
   </head>
   <body>
     <div class="container-fullwidth">
@@ -35,12 +35,12 @@
                         <p><a href="#">Attiva notifiche Desktop</a></p>
                     </div>
                 </div>
-                <div class="lista-utenti clearfix">
+                <div class="lista-utenti">
                     <div class="cerca-utenti">
                         <div class="cerca-box">
                             <i class="fas fa-search"></i>
                             <form>
-                                <input type="text" value="Cerca utente o Chat">
+                                <input type="text" placeholder="Cerca utente o Chat">
                             </form>
                         </div>
                     </div>
@@ -203,21 +203,37 @@
                             <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </div>
-                <div class="chat"></div>
+                <div class="chat cleafix"></div>
                 <div class="testo">
                     <div class="testo-icone">
                         <i class="far fa-smile"></i>
                     </div>
                     <div class="testo-form">
                         <form class="chat-form">
-                            <input type="text" value="Scrivi un messaggio.">
+                            <input id="input-msg" placeholder="Scrivi un messaggio.">
                         </form>
                     </div>
-                    <div class="testo-audio">
-                        <i class="fas fa-microphone"></i>
+                    <div class="testo-audio-invia">
+                        <i id="audio" class="fas fa-microphone"></i>
+                        <i id="invia" class="fas fa-paper-plane"></i>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <div class="template">
+        <div class="msg-sent clearfix">
+            <p class="msg-testo"></p>
+            <p class="msg-orario"></p>
+        </div>
+    </div>
+
+    <div class="template">
+        <div class="msg-receive clearfix">
+            <p class="msg-testo"></p>
+            <p class="msg-orario"></p>
         </div>
     </div>
 
