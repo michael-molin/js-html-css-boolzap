@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var orario = new Date;
     var orarioAttuale = (orario.getHours() + ":" + orario.getMinutes());
-    
+
         $('#invia').click(function(){
             inviaMessaggio();
             rispostaMessaggio();
@@ -15,13 +15,24 @@ $(document).ready(function(){
                 $('#audio').hide();
                 $('#invia').show();
             }
-            if (event.key == "Enter") {
+            if (event.which == 13) {
                 console.log('tasto funzionante');
                 inviaMessaggio();
                 rispostaMessaggio();
             }
         });
 
+
+        $('#input-utenti').keyup(function(event){
+            var carattereFiltro = $(this).val().toLowerCase();
+            $('.utente').each(function() {
+                if ($(this).text().toLowerCase().includes(carattereFiltro)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        })
 
         function inviaMessaggio() {
             var inputSalvato = $('#input-msg').val();
