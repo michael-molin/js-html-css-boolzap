@@ -301,7 +301,7 @@ p {
     line-height: 80%;
 }
 
-.chat-form input {
+.testo-form input {
     width: 100%;
     padding: 18px 20px;
     border: none;
@@ -311,5 +311,6 @@ p {
 #invia {
     display:none;
 }
+
 /* ------------------------------------------------------------------------- */
 /* FINE FORMATTAZIONE BLOCCO CHAT */

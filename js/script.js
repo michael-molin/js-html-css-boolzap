@@ -15,24 +15,23 @@ $(document).ready(function(){
                 $('#audio').hide();
                 $('#invia').show();
             }
-            if (event.which == 13) {
-                console.log('tasto funzionante');
+            if (event.key == "Enter") {
+                console.log('premuto invio');
                 inviaMessaggio();
                 rispostaMessaggio();
             }
         });
 
-
         $('#input-utenti').keyup(function(event){
             var carattereFiltro = $(this).val().toLowerCase();
-            $('.utente').each(function() {
+            $('.utente').find('h4').each(function() {
                 if ($(this).text().toLowerCase().includes(carattereFiltro)) {
                     $(this).show();
                 } else {
                     $(this).hide();
                 }
             });
-        })
+        });
 
         function inviaMessaggio() {
             var inputSalvato = $('#input-msg').val();
