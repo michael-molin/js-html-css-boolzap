@@ -1,6 +1,16 @@
 $(document).ready(function(){
     var orario = new Date;
-    var orarioAttuale = (orario.getHours() + ":" + orario.getMinutes());
+    var orarioMinuti = parseInt(orario.getMinutes());
+    if(orarioMinuti < 10) {
+        orarioMinuti = '0'+orarioMinuti;
+    }
+
+    var orarioOre = parseInt(orario.getHours());
+    if(orarioOre < 10) {
+        orarioOre = '0'+orarioMinuti;
+    }
+    
+    var orarioAttuale = (orarioOre + ":" + orarioMinuti);
 
         $('.utente').click(function(){
             var dataUtenteTemp = $(this).data('nomeUtente');
@@ -53,34 +63,15 @@ $(document).ready(function(){
             var inputSalvato = $('#input-msg').val();
             $('#input-msg').val('');
             var nuovoMessaggio = $('.template .msg-sent').clone();
-            nuovoMessaggio.children('.msg-testo').text(inputSalvato);
-            nuovoMessaggio.children('.msg-orario').text(orarioAttuale);
-            $('.chat.chat-active').append(nuovoMessaggio);
-            var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente');
-            $('.utente').each(function() {
-                if (dataUtenteTemp == ($(this).data('nomeUtente'))) {
-                    $(this).find('p').text(inputSalvato);
-                    $(this).find('h5').text(orarioAttuale);
-                }
-            });
+            creaMsg(nuovoMessaggio, inputSalvato, orarioAttuale);
             scroll();
         }
 
         function rispostaMessaggio() {
             setTimeout(function () {
                 var nuovoMessaggio = $('.template .msg-receive').clone();
-                nuovoMessaggio.children('.msg-testo').text('Ok');
-                nuovoMessaggio.children('.msg-orario').text(orarioAttuale);
-                $('.chat.chat-active').append(nuovoMessaggio);
-
-                var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente');
-                $('.utente').each(function() {
-                    if (dataUtenteTemp == ($(this).data('nomeUtente'))) {
-                        $(this).find('p').text('Ok');
-                        $(this).find('h5').text(orarioAttuale);
-                        $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + orarioAttuale)
-                    }
-                });
+                creaMsg(nuovoMessaggio ,'ok', orarioAttuale);
+                $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + orarioAttuale);
                 scroll();
             }, 3000);
         }
@@ -89,5 +80,18 @@ $(document).ready(function(){
             var pixelScroll =$('.chat.chat-active').height();
             console.log(pixelScroll);
             $('.chat.chat-active').scrollTop(pixelScroll);
+        }
+
+        function creaMsg(messaggio, testo, orario) {
+            messaggio.children('.msg-testo').text(testo);
+            messaggio.children('.msg-orario').text(orario);
+            $('.chat.chat-active').append(messaggio);
+            var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente');
+            $('.utente').each(function() {
+                if (dataUtenteTemp == ($(this).data('nomeUtente'))) {
+                    $(this).find('p').text(testo);
+                    $(this).find('h5').text(orario);
+                }
+            });
         }
 });
