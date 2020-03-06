@@ -5,11 +5,15 @@ $(document).ready(function(){
         $('.utente').click(function(){
             var dataUtenteTemp = $(this).data('nomeUtente');
             var nomeChat = $(this).find('h4').text();
+            var orarioChat = $(this).find('h5').text();
+            var imgUtente = $(this).find('.img-profilo').clone();
             $('.chat').each(function(){
                 if(dataUtenteTemp == ($(this).data('nomeUtente'))) {
                     $('.chat').removeClass('chat-active');
                     $(this).addClass('chat-active');
                     $('.destinatario-chat-nome h4').text(nomeChat);
+                    $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + orarioChat);
+                    $('.destinatario-chat-img').html(imgUtente);
                 }
             });
         });
@@ -68,15 +72,17 @@ $(document).ready(function(){
                 nuovoMessaggio.children('.msg-testo').text('Ok');
                 nuovoMessaggio.children('.msg-orario').text(orarioAttuale);
                 $('.chat.chat-active').append(nuovoMessaggio);
+
                 var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente');
                 $('.utente').each(function() {
                     if (dataUtenteTemp == ($(this).data('nomeUtente'))) {
                         $(this).find('p').text('Ok');
                         $(this).find('h5').text(orarioAttuale);
+                        $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + orarioAttuale)
                     }
                 });
                 scroll();
-            }, 4000);
+            }, 3000);
         }
 
         function scroll() {

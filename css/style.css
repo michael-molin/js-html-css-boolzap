@@ -80,7 +80,7 @@ p {
 
 .msg-receive {
     padding: 5px;
-    min-width: 5%;
+    min-width: 10%;
     max-width: 40%;
     background-color: white;
     margin: 15px 0px 15px 30px;
@@ -89,7 +89,6 @@ p {
 }
 
 .msg-testo {
-    text-align: center;
     font-size: 16px;
     margin-bottom: 3px;
 }
@@ -201,6 +200,8 @@ p {
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid #dbdbdb;
+    cursor: pointer;
+    overflow-x: hidden;
 }
 
 .mio-profilo-dx {
@@ -250,6 +251,7 @@ p {
 }
 
 .destinatario-chat-nome {
+    margin-left: 10px;
     line-height: 18px;
 }
 
