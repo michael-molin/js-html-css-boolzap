@@ -2,12 +2,24 @@ $(document).ready(function(){
     var orario = new Date;
     var orarioAttuale = (orario.getHours() + ":" + orario.getMinutes());
 
+        $('.utente').click(function(){
+            var dataUtenteTemp = $(this).data('nomeUtente');
+            var nomeChat = $(this).find('h4').text();
+            $('.chat').each(function(){
+                if(dataUtenteTemp == ($(this).data('nomeUtente'))) {
+                    $('.chat').removeClass('chat-active');
+                    $(this).addClass('chat-active');
+                    $('.destinatario-chat-nome h4').text(nomeChat);
+                }
+            });
+        });
+
         $('#invia').click(function(){
             inviaMessaggio();
             rispostaMessaggio();
         });
 
-        $('#input-msg').keydown(function(event){
+        $('#input-msg').keyup(function(event){
             if (($('#input-msg').val()) == '') {
                 $('#invia').hide();
                 $('#audio').show();
@@ -39,9 +51,8 @@ $(document).ready(function(){
             var nuovoMessaggio = $('.template .msg-sent').clone();
             nuovoMessaggio.children('.msg-testo').text(inputSalvato);
             nuovoMessaggio.children('.msg-orario').text(orarioAttuale);
-            $('.chat').append(nuovoMessaggio);
-            $('#invia').hide();
-            $('#audio').show();
+            $('.chat.chat-active').append(nuovoMessaggio);
+            scroll();
         }
 
         function rispostaMessaggio() {
@@ -49,7 +60,14 @@ $(document).ready(function(){
                 var nuovoMessaggio = $('.template .msg-receive').clone();
                 nuovoMessaggio.children('.msg-testo').text('Ok');
                 nuovoMessaggio.children('.msg-orario').text(orarioAttuale);
-                $('.chat').append(nuovoMessaggio);
+                $('.chat.chat-active').append(nuovoMessaggio);
+                scroll();
             }, 1000);
+        }
+
+        function scroll() {
+            var pixelScroll =$('.chat.chat-active').height();
+            console.log(pixelScroll);
+            $('.chat.chat-active').scrollTop(pixelScroll);
         }
 });
