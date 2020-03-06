@@ -52,6 +52,13 @@ $(document).ready(function(){
             nuovoMessaggio.children('.msg-testo').text(inputSalvato);
             nuovoMessaggio.children('.msg-orario').text(orarioAttuale);
             $('.chat.chat-active').append(nuovoMessaggio);
+            var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente');
+            $('.utente').each(function() {
+                if (dataUtenteTemp == ($(this).data('nomeUtente'))) {
+                    $(this).find('p').text(inputSalvato);
+                    $(this).find('h5').text(orarioAttuale);
+                }
+            });
             scroll();
         }
 
@@ -61,8 +68,15 @@ $(document).ready(function(){
                 nuovoMessaggio.children('.msg-testo').text('Ok');
                 nuovoMessaggio.children('.msg-orario').text(orarioAttuale);
                 $('.chat.chat-active').append(nuovoMessaggio);
+                var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente');
+                $('.utente').each(function() {
+                    if (dataUtenteTemp == ($(this).data('nomeUtente'))) {
+                        $(this).find('p').text('Ok');
+                        $(this).find('h5').text(orarioAttuale);
+                    }
+                });
                 scroll();
-            }, 1000);
+            }, 4000);
         }
 
         function scroll() {
