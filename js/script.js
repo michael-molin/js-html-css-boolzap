@@ -16,26 +16,20 @@ $(document).ready(function(){
         $('.chat').on('mouseenter', '.msg' , function() {
             $(this).find('.msg-overlay').show();
             $(this).find('.menu-opzioni').hide();
-
         });
 
         $('.chat').on('mouseleave', '.msg' , function() {
-            console.log('mouseleave su msg');
             $(this).find('.msg-overlay').hide()
         });
 
 
         // GESTIONE apertura opzioni chat
         $('.chat').on('click' , '.opzioni-chat i' , function() {
-            console.log('click opzioni chat');
             $(this).next('.menu-opzioni').toggle();
         })
 
         $('.chat').on('click' , '.cancella-chat' , function() {
-            console.log('click cancella chat');
-            var checkposition = $(this).parentsUntil('.msg');
-            console.log(checkposition);
-            $('this').parentsUntil('.msg').hide();
+            $(this).parents('.msg').hide();
         })
 
 
