@@ -201,7 +201,8 @@
                             <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </div>
-                <div class="chat chat-active cleafix" data-nome-utente="01"></div>
+                <div class="chat default chat-active clearfix"></div>
+                <div class="chat cleafix" data-nome-utente="01"></div>
                 <div class="chat cleafix" data-nome-utente="02"></div>
                 <div class="chat cleafix" data-nome-utente="03"></div>
                 <div class="chat cleafix" data-nome-utente="04"></div>
@@ -230,20 +231,21 @@
 
 
     <div class="template">
-        <div class="msg-sent clearfix">
+        <div class="msg">
             <p class="msg-testo"></p>
             <p class="msg-orario"></p>
+            <div class="msg-overlay">
+
+                <div class="opzioni-chat">
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="menu-opzioni">
+                        <p>Info</p>
+                        <p class="cancella-chat"> Cancella </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="template">
-        <div class="msg-receive clearfix">
-            <p class="msg-testo"></p>
-            <p class="msg-orario"></p>
-        </div>
-    </div>
-
-
 
   </body>
 </html>

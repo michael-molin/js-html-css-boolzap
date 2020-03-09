@@ -31,6 +31,49 @@ p {
     display:block;
 }
 
+.msg {
+    position:relative;
+}
+
+.msg-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+    z-index: 1;
+    transition: 0.2s;
+}
+
+.msg-overlay i {
+    float: right;
+    color: black;
+    font-size: 20px;
+}
+
+.opzioni-chat {
+    position: relative;
+}
+
+.menu-opzioni {
+    line-height: 30px;
+    width: 100%;
+    display: none;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 180%);
+    z-index: 3;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.menu-opzioni p:hover {
+    background-color: #f4f4f4;
+}
+
 /*  ----------------------------------------------------------------------- */
 /*     FORMATTAZIONE GENERALE */
 .container-fullwidth {
@@ -70,7 +113,7 @@ p {
 
 .msg-sent {
     padding: 5px;
-    min-width: 5%;
+    min-width: 15%;
     max-width: 40%;
     background-color: #dafac2;
     margin: 15px 30px 15px 0;
@@ -80,7 +123,7 @@ p {
 
 .msg-receive {
     padding: 5px;
-    min-width: 10%;
+    min-width: 15%;
     max-width: 40%;
     background-color: white;
     margin: 15px 0px 15px 30px;
@@ -195,13 +238,21 @@ p {
 .utente {
     width: 100%;
     height: 70px;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid #dbdbdb;
     cursor: pointer;
     overflow-x: hidden;
+}
+
+.utenteclick {
+    background-color: #f5f5f5;
+}
+
+.utente:hover{
+    background-color: #f9f9f9;
 }
 
 .mio-profilo-dx {
@@ -284,13 +335,21 @@ p {
     display:flex;
 }
 
+.default {
+    height: calc(100% - 70px);
+}
+
 .testo {
     width: 100%;
     height: 70px;
     background-color: #f5f0ed;
-    display: flex;
+    display: none;
     justify-content: space-around;
     align-items: center;
+}
+
+.testo-active {
+    display: flex;
 }
 
 .testo-icone , .testo-audio-invia {
