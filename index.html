@@ -22,6 +22,7 @@
                         <img class="img-profilo" src="https://picsum.photos/50/50?random=1" alt="">
                     </div>
                     <div class="mio-profilo-dx">
+                            <i class="fas fa-plus" id="i-crea-contatto"></i>
                             <i class="fas fa-circle-notch"></i>
                             <i class="far fa-comment"></i>
                             <i class="fas fa-ellipsis-v"></i>
@@ -60,7 +61,7 @@
                     <div class="utente" data-nome-utente="02">
                         <div class="utente-img-testo">
                             <div class="utente-img">
-                                <img class="img-profilo" src="https://picsum.photos/50/50?random=3" alt="">
+                                <img class="img-profilo" src="https://picsum.photos/50/50?random=30" alt="">
                             </div>
                             <div class="utente-testo">
                                 <h4>Daniel</h4>
@@ -237,6 +238,40 @@
 
 
 
+    <script id="crea-contatto-template" type="text/x-handlebars-template">
+        <div class="utente" data-nome-utente="{{dataNumero}}">
+            <div class="utente-img-testo">
+                <div class="utente-img">
+                    <img class="img-profilo" src="https://picsum.photos/50/50?random={{numPicsum}}" alt="">
+                </div>
+                <div class="utente-testo">
+                    <h4>{{nomeUtente}}</h4>
+                    <p>Ciao {{nomeUtente}} questo è un testo preimpostato da Handlebars</p>
+                </div>
+            </div>
+            <div class="utente-orario">
+                <h5>{{orarioContatto}}</h5>
+            </div>
+        </div>
+    </script>
+
+    <script id="crea-chat-template" type="text/x-handlebars-template">
+        <div class="chat cleafix" data-nome-utente="{{dataNumero}}">
+            <div class="msg msg-sent">
+                <p class="msg-testo ">Ciao {{nomeContatto}}, questo è un messaggio pre-impostato da Handlebars</p>
+                <p class="msg-orario">{{orarioContatto}}</p>
+                <div class="msg-overlay">
+                    <div class="opzioni-chat">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="menu-opzioni">
+                            <p>Info</p>
+                            <p class="cancella-chat"> Cancella </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
 
     <script id="messaggio-template" type="text/x-handlebars-template">
         <div class="msg {{tipoMessaggio}}">
