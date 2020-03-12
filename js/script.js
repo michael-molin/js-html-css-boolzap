@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    var source = $('#messaggio-template').html();
+    var template = Handlebars.compile(source);
     var orario = new Date;
     var orarioMinuti = parseInt(orario.getMinutes());
     if(orarioMinuti < 10) {
@@ -89,17 +91,13 @@ $(document).ready(function(){
         function inviaMessaggio() {
             var inputSalvato = $('#input-msg').val();
             $('#input-msg').val('');
-            var nuovoMessaggio = $('.template .msg').clone();
-            nuovoMessaggio.addClass('msg-sent');
-            creaMsg(nuovoMessaggio, inputSalvato, orarioAttuale);
+            creaMsg(inputSalvato, orarioAttuale, 'msg-sent');
             scroll();
         }
 
         function rispostaMessaggio() {
             setTimeout(function () {
-                var nuovoMessaggio = $('.template .msg').clone();
-                nuovoMessaggio.addClass('msg-receive');
-                creaMsg(nuovoMessaggio ,'ok', orarioAttuale);
+                creaMsg('ok', orarioAttuale, 'msg-receive');
                 $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + orarioAttuale);
                 scroll();
             }, 3000);
@@ -110,16 +108,31 @@ $(document).ready(function(){
             $('.chat.chat-active').scrollTop(pixelScroll);
         }
 
-        function creaMsg(messaggio, testo, orario) {
-            messaggio.children('.msg-testo').text(testo);
-            messaggio.children('.msg-orario').text(orario);
-            $('.chat.chat-active').append(messaggio);
-            var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente');
-            $('.utente').each(function() {
-                if (dataUtenteTemp == ($(this).data('nomeUtente'))) {
-                    $(this).find('p').text(testo);
-                    $(this).find('h5').text(orario);
+
+
+
+        function creaMsg(testo, orario, inviatoRicevuto) {
+            var datiMessaggio = {                               //creo un oggetto con testo, orario e classe (Inviato/ricevuto)
+                    testoMessaggio: testo,
+                    orarioMessaggio: orario,
+                    tipoMessaggio: inviatoRicevuto
+            };
+
+            var dataUtenteTemp = $('.chat.chat-active').data('nomeUtente'); //ricavo valore DATA
+            $('.utente').each(function() {                                  // ciclo per controllare corrispondenza DATA
+                if (dataUtenteTemp == ($(this).data('nomeUtente'))) {       // Se data uguale
+                    $(this).find('p').text(datiMessaggio.testoMessaggio);   // Modifica anteprima messaggio chat sx
+                    $(this).find('h5').text(datiMessaggio.orarioMessaggio); // modifica orario messaggio chat sx
                 }
             });
+            var templateCompilato = template(datiMessaggio);                //assegno valori oggetto alle parti in {{}} nel template
+            $('.chat.chat-active').append(templateCompilato);               // append chat, ovvero inserisco messaggio
         }
+
+
+
+
+
+
+
 });
