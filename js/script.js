@@ -41,7 +41,7 @@ $(document).ready(function(){
         })
 
         $(document).on('click', '.utente' , function() {
-                $(this).removeClass('utenteclick');
+                $('.utente').removeClass('utenteclick');
                 $(this).addClass('utenteclick');
                 var dataUtenteTemp = $(this).data('nomeUtente');
                 var nomeChat = $(this).find('h4').text();
