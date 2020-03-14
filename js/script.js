@@ -1,46 +1,39 @@
 $(document).ready(function(){
-    var source = $('#messaggio-template').html();
+    var source = $('#messaggio-template').html();                    //CREO IL TEMPLATE BASE PER I MESSAGGI
     var template = Handlebars.compile(source);
-    var sorgenteCreaContatto= $('#crea-contatto-template').html();
+
+    var sorgenteCreaContatto= $('#crea-contatto-template').html();  //CREO IL TEMPLATE BASE PER POTER INSERIRE UN NUOVO UTENTE
     var templateContatto = Handlebars.compile(sorgenteCreaContatto);
-    var sorgenteCreaChat= $('#crea-chat-template').html();
+
+    var sorgenteCreaChat= $('#crea-chat-template').html();          //CREO IL TEMPLATE BASE PER LA CHAT CORRISPONDENTE AL NUOVO UTENTE
     var templateChat = Handlebars.compile(sorgenteCreaChat);
-    var indiceDataUtente = 11;
 
-    //gestione orario
-    var orario = new Date;
-    var orarioMinuti = parseInt(orario.getMinutes());
-    if(orarioMinuti < 10) {
-        orarioMinuti = '0'+orarioMinuti;
-    }
+    var indiceDataUtente = 0;  //VARIABILE UTILIZZATA COME INDICE PER LEGARE UTENTE E CHAT CORRISPONDENTE
 
-    var orarioOre = parseInt(orario.getHours());
-    if(orarioOre < 10) {
-        orarioOre = '0'+orarioMinuti;
-    }
+    creaContattiDefault();
 
-    var orarioAttuale = (orarioOre + ":" + orarioMinuti);
-
-        //Gestione ICONA mouseenter mouseleave
+        //GESTIONE ICONA OPZIONI MESSAGGIO MOUSEENTER/MOUSELEAVE
         $('.chat').on('mouseenter', '.msg' , function() {
             $(this).find('.msg-overlay').show();
             $(this).find('.menu-opzioni').hide();
         });
-
         $('.chat').on('mouseleave', '.msg' , function() {
             $(this).find('.msg-overlay').hide()
         });
 
-        // GESTIONE apertura opzioni chat
+        // GESTIONE APERTURA OPZIONI MESSAGGIO
         $('.chat').on('click' , '.opzioni-chat i' , function() {
             $(this).next('.menu-opzioni').toggle();
         })
 
+        // CANCELLAZIONE MESSAGGIO
         $('.chat').on('click' , '.cancella-chat' , function() {
-            $(this).parents('.msg').hide();
+            $(this).parents('.msg').remove();
         })
 
+        // GESTIONE CLICK UTENTE/APERTURA CHAT CORRISPONDENTE
         $(document).on('click', '.utente' , function() {
+                $('.chat').removeClass('default');
                 $('.utente').removeClass('utenteclick');
                 $(this).addClass('utenteclick');
                 var dataUtenteTemp = $(this).data('nomeUtente');
@@ -59,12 +52,13 @@ $(document).ready(function(){
                 });
             });
 
-
+        // GESTIONE PULSANTE INVIA
         $('#invia').click(function(){
             inviaMessaggio();
             rispostaMessaggio();
         });
 
+        // GESTIONE TASTIERA CHAT
         $('#input-msg').keyup(function(event){
             if (($('#input-msg').val()) == '') {
                 $('#invia').hide();
@@ -80,6 +74,7 @@ $(document).ready(function(){
             }
         });
 
+        // GESTIONE RICERCA
         $('#input-utenti').keyup(function(event){
             var carattereFiltro = $(this).val().toLowerCase();
             $('.utente').each(function() {
@@ -91,35 +86,35 @@ $(document).ready(function(){
             });
         });
 
+        // CREAZIONE NUOVO CONTATTO
         $('#i-crea-contatto').click(function() {
-            creaNuovoContatto(indiceDataUtente , orarioAttuale);
+            var nomeNuovoContatto = prompt('Inserisci nome nuovo contatto: ');
+            creaNuovoContatto(nomeNuovoContatto, indiceDataUtente);
             indiceDataUtente++;
         });
+
+
+        // GESTIONE FUNZIONI PRIMARIE MESSAGGISTICA
 
         function inviaMessaggio() {
             var inputSalvato = $('#input-msg').val();
             $('#input-msg').val('');
-            creaMsg(inputSalvato, orarioAttuale, 'msg-sent');
+            creaMsg(inputSalvato, 'msg-sent');
             scroll();
         }
 
         function rispostaMessaggio() {
             setTimeout(function () {
-                creaMsg('ok', orarioAttuale, 'msg-receive');
-                $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + orarioAttuale);
+                creaMsg('ok', 'msg-receive');
+                $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + settaOra ());
                 scroll();
             }, 3000);
         }
 
-        function scroll() {
-            var pixelScroll =$('.chat.chat-active').height();
-            $('.chat.chat-active').scrollTop(pixelScroll);
-        }
-
-        function creaMsg(testo, orario, inviatoRicevuto) {
+        function creaMsg(testo, inviatoRicevuto) {
             var datiMessaggio = {                               //creo un oggetto con testo, orario e classe (Inviato/ricevuto)
                     testoMessaggio: testo,
-                    orarioMessaggio: orario,
+                    orarioMessaggio: settaOra (),
                     tipoMessaggio: inviatoRicevuto
             };
 
@@ -134,35 +129,63 @@ $(document).ready(function(){
             $('.chat.chat-active').append(templateCompilato);               // append chat, ovvero inserisco messaggio
         }
 
-        function generaRandom() {
-            return Math.floor(Math.random() * 1000 +1);
-        }
-
-        function creaNuovoContatto(indiceData, orario ) {
+        function creaNuovoContatto(nomeContatto, indiceData) {
             var datiContatto = {
-                nomeUtente: prompt('Inserisci nome nuovo contatto: '),
+                nomeUtente: nomeContatto,
                 dataNumero: indiceData,
                 numPicsum: generaRandom(),
-                orarioContatto: orario,
+                orarioContatto: settaOra(),
             };
             var contattoCompilato = templateContatto(datiContatto);
-            creaChat(datiContatto.nomeUtente, datiContatto.orarioContatto, datiContatto.dataNumero);
+            creaChat(datiContatto.nomeUtente, datiContatto.dataNumero);
             $('.lista-utenti').append(contattoCompilato);
-            //$('<div class="chat cleafix" data-nome-utente="'+indiceData+'">').insertBefore('.testo');
         }
 
-        function creaChat(nome, orario, data) {
+        function creaChat(nome, indiceData) {
             var datiChat = {
                 nomeContatto : nome,
-                orarioContatto : orario,
-                dataNumero: data
+                orarioContatto : settaOra (),
+                dataNumero: indiceData
             }
 
             var chatCompilata = templateChat(datiChat);
             $(chatCompilata).insertBefore('.testo');
         }
 
+        function creaContattiDefault() {
+            var utentiDefault = ["Shana", "Alessandro", "Enrico", "Arianna", "Daniel"];
+            console.log('dentro creaContattiDefault');
+            for (indiceDataUtente ; indiceDataUtente < utentiDefault.length ; indiceDataUtente++ ) {
+                console.log('dentro al for');
+                creaNuovoContatto(utentiDefault[indiceDataUtente], indiceDataUtente);
+            }
+        }
+        // GESTIONE FUNZIONI SECONDARIE
 
+        function settaOra () {
+            var orario = new Date;
+            var orarioMinuti = parseInt(orario.getMinutes());
+            if(orarioMinuti < 10) {
+                orarioMinuti = '0'+orarioMinuti;
+            }
+
+            var orarioOre = parseInt(orario.getHours());
+            if(orarioOre < 10) {
+                orarioOre = '0'+orarioMinuti;
+            }
+
+            var orarioAttuale = (orarioOre + ":" + orarioMinuti);
+            return orarioAttuale;
+        }
+
+        function generaRandom() {
+            return Math.floor(Math.random() * 1000 +1);
+        }
+
+        function scroll() {
+            var pixelScroll =$('.chat.chat-active').height();
+            $('.chat.chat-active').scrollTop(pixelScroll);
+        }
 
 
 
