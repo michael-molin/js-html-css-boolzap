@@ -105,7 +105,7 @@ $(document).ready(function(){
 
         function rispostaMessaggio() {
             setTimeout(function () {
-                creaMsg('ok', 'msg-receive');
+                creaMsg('Ok', 'msg-receive');
                 $('.destinatario-chat-nome p').text('Ultimo accesso alle: ' + settaOra ());
                 scroll();
             }, 3000);
@@ -123,6 +123,7 @@ $(document).ready(function(){
                 if (dataUtenteTemp == ($(this).data('nomeUtente'))) {       // Se DATA uguale
                     $(this).find('p').text(datiMessaggio.testoMessaggio);   // Modifica anteprima messaggio chat sx
                     $(this).find('h5').text(datiMessaggio.orarioMessaggio); // modifica orario messaggio chat sx
+                    $(this).insertAfter(".cerca-utenti");                   // dopo l'inserimento del messaggio, il contatto utente va in cima
                 }
             });
             var templateCompilato = template(datiMessaggio);                //assegno valori oggetto alle parti in {{}} nel template
